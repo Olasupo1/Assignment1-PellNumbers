@@ -1,41 +1,55 @@
 ﻿using System;
 
-namespace PrintTriangle
+namespace PellSeries
 {
     class Program
     {
         static void Main(string[] args)
         {
+            int n;
             string line;
-            int number;
-            System.Console.WriteLine("Enter number: ");
+            Console.WriteLine("Enter number: ");
             while ((line = System.Console.ReadLine()) != null)
             {
-                int.TryParse(line, out number);
-                if (number < 0)
+                int.TryParse(line, out n);
+
+                if (n < 0)
                 {
                     System.Console.WriteLine("Only numbers greater than zero is allowed");
                 }
                 else
                 {
-                    PrintTriangle(number);
+                    for (int i = 0; i < n; i++)
+                    {
+                        Console.Write(PellSeries(i) + " ");
+                    }
                 }
                 
-                System.Console.WriteLine("Enter number: ");
+                Console.WriteLine("\nEnter number: ");
             }
+            
+            
         }
 
-        private static void PrintTriangle(int n)
+        private static int PellSeries(int n)
         {
-            int i, j;
-            for (i = 1; i <= n; i++)
-            {
-                for (j = 1; j <= n - i; j++)
-                    Console.Write(" ");
-                for (j = 1; j <= 2 * i - 1; j++)
-                    Console.Write("*");
-                Console.Write("\n");
-            }
+            
+                if (n <= 2)
+                    return n;
+                int a = 1;
+                int b = 2;
+                int c;
+                for (int i = 3; i <= n; i++)
+                {
+                    c = 2 * b + a;
+                    a = b;
+                    b = c;
+                }
+            return b; ;
+            
+            
         }
     }
+
+    
 }
